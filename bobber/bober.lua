@@ -16,14 +16,13 @@ Made by CodingInMyDream
 
 local depth = -1.8
 
-local neural = require('neural.interface')
+
+local neural = peripheral.find("neuralInterface")
 local sensor = peripheral.wrap("back")
 
-neural.assertModules({
-    'plethora:kinetic',
-    'plethora:introspection',
-    'plethora:sensor',
-})
+if not neural.hasModule("plethora:sensor") then error("Must have a sensor", 0) end
+if not neural.hasModule("plethora:introspection") then error("Must have an introspection module", 0) end
+if not neural.hasModule("plethora:kinetic", 0) then error("Must have a kinetic agument", 0) end
 
 local function isHoldingRod()
     local owner = neural.getMetaOwner()
